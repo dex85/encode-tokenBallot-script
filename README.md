@@ -39,5 +39,40 @@ Account 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 has 100000000000000000000 uni
 Account 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc has 100000000000000000000 units of voting power after self delegating  
 Account 0x90f79bf6eb2c4f870365e785982e1f101e93b906 has 100000000000000000000 units of voting power after self delegating  
 ## 5. deploy vote contract
+```typescript
+const tokenBallot = await viem.deployContract("TokenizedBallot",[PROPOSALS.map((prop) => toHex(prop, { size: 32 })),contract.address, lastBlockNumber])
+```
+Ballot contract deployed at 0xdc64a140aa3e981100a9beca4e685f962f0cf6c9  
 ## 6. voting
+### Accounts 1,2,3
+```typescript
+await acc1.writeContract({abi: abi,functionName: "vote",args: [2n, 1n],address: tokenBallotAddress,});
+await acc2.writeContract({abi: abi,functionName: "vote",args: [2n, 1n],address: tokenBallotAddress,});
+await acc3.writeContract({abi: abi,functionName: "vote",args: [1n, 1n],address: tokenBallotAddress,});
+```
+Account 1 voted Strawberry
+Account 2 voted Strawberry
+Account 3 voted Vanilla
+### Account 4
+```typescript
+await acc4.writeContract({
+    abi: abi,
+    functionName: "vote",
+    args: [2n, 1n],
+    address: tokenBallotAddress,
+  });
+```
+failed
+```
+details: "VM Exception while processing transaction: reverted with reason string 'Not enough votingpower'",
+  docsPath: undefined,
+  metaMessages: [
+    'Request Arguments:',
+    '  from:  0x15d34aaf54267db7d7c367839aaf71a00a2c6a65\n' +
+      '  to:    0xdc64a140aa3e981100a9beca4e685f962f0cf6c9\n' +
+      '  data:  0xb384abef00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001'
+  ],
+  shortMessage: 'An unknown RPC error occurred.',
+  version: 'viem@2.8.12',
+```
 ## 7. result
