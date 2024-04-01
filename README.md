@@ -30,7 +30,14 @@ In this case the block number of the vote contract will be earlier than the avai
 details: "VM Exception while processing transaction: reverted with reason string 'Not enough votingpower'",
 ```
 ## 4. delegate voting power
-
+```typescript
+const delTxAcc1 = await contract.write.delegate([acc1.account.address], {account: acc1.account,});
+const delTxAcc2 = await contract.write.delegate([acc2.account.address], {account: acc2.account,});
+const delTxAcc3 = await contract.write.delegate([acc3.account.address], {account: acc3.account,});
+```
+Account 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 has 100000000000000000000 units of voting power after self delegating  
+Account 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc has 100000000000000000000 units of voting power after self delegating  
+Account 0x90f79bf6eb2c4f870365e785982e1f101e93b906 has 100000000000000000000 units of voting power after self delegating  
 ## 5. deploy vote contract
 ## 6. voting
 ## 7. result
