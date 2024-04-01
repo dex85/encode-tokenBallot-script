@@ -11,6 +11,10 @@ async function main() {
     const publicClient = await viem.getPublicClient();
     // get some wallets
     const [deployer, acc1, acc2, acc3, acc4] = await viem.getWalletClients();
+    console.log(`Account1 address: ${acc1.account.address}`);
+    console.log(`Account2 address: ${acc2.account.address}`);
+    console.log(`Account3 address: ${acc3.account.address}`);
+    console.log(`Account4 address: ${acc4.account.address}`);
     // deploy the token contract
     const contract = await viem.deployContract("MyToken");
     console.log(`Token contract deployed at ${contract.address}\n`);
