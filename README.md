@@ -76,3 +76,12 @@ details: "VM Exception while processing transaction: reverted with reason string
   version: 'viem@2.8.12',
 ```
 ## 7. result
+```typescript
+const winner = await publicClient.readContract({
+      address: tokenBallotAddress,
+      abi,
+      functionName: "winnerName",
+      args: [],
+    }) as `0x${string}`;
+```
+Proposal Strawberry is the winner.
