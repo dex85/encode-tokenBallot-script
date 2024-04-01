@@ -9,6 +9,10 @@ Account2 address: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
 Account3 address: 0x90f79bf6eb2c4f870365e785982e1f101e93b906  
 Account4 address: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65  
 ## 2. deploy Token contract
+```typescript
+const contract = await viem.deployContract("MyToken");
+```
+Token contract deployed at 0x5fbdb2315678afecb367f032d93f642f64180aa3  
 ## 3. mint tokens
 ### 3.1. Before deploying vote contract
 ### 3.2. After deploying vote contract
